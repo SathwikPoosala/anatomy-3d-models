@@ -32,7 +32,7 @@ const TeacherQuizzes = ({ user, onLogout }) => {
 
   const fetchQuizzes = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/quizzes/teacher');
+      const res = await axios.get('/api/quizzes/teacher');
       setQuizzes(res.data);
     } catch (error) {
       console.error('Error fetching quizzes:', error);
@@ -55,7 +55,7 @@ const TeacherQuizzes = ({ user, onLogout }) => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/quizzes/${id}`);
+      await axios.delete(`/api/quizzes/${id}`);
       fetchQuizzes();
     } catch (error) {
       console.error('Error deleting quiz:', error);

@@ -105,7 +105,7 @@ const AddQuiz = ({ user, onLogout }) => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/quizzes', {
+      await axios.post('/api/quizzes', {
         system,
         questions
       });

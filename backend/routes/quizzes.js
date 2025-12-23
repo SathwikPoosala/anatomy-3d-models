@@ -83,6 +83,13 @@ router.post('/:id/submit', authMiddleware, studentMiddleware, async (req, res) =
       return res.status(400).json({ message: 'Invalid answers format' });
     }
 
+    // Validate each answer is a string
+    for (let i = 0; i < answers.length; i++) {
+      if (typeof answers[i] !== 'string' || !answers[i]) {
+        return res.status(400).json({ message: 'All answers must be non-empty strings' });
+      }
+    }
+
     let score = 0;
     quiz.questions.forEach((question, index) => {
       if (answers[index] === question.correctAnswer) {
@@ -90,8 +97,9 @@ router.post('/:id/submit', authMiddleware, studentMiddleware, async (req, res) =
       }
     });
 
-    // Save score to user
+    // Save score to user (remove old attempts for this quiz)
     const user = await User.findById(req.userId);
+    user.quizScores = user.quizScores.filter(s => s.quizId.toString() !== quiz._id.toString());
     user.quizScores.push({
       quizId: quiz._id,
       score,

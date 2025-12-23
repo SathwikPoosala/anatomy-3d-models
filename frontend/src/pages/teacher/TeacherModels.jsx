@@ -32,7 +32,7 @@ const TeacherModels = ({ user, onLogout }) => {
 
   const fetchModels = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/models/teacher');
+      const res = await axios.get('/api/models/teacher');
       setModels(res.data);
     } catch (error) {
       console.error('Error fetching models:', error);
@@ -55,7 +55,7 @@ const TeacherModels = ({ user, onLogout }) => {
     }
 
     try {
-      await axios.delete(`http://localhost:5000/api/models/${id}`);
+      await axios.delete(`/api/models/${id}`);
       fetchModels();
     } catch (error) {
       console.error('Error deleting model:', error);

@@ -34,7 +34,7 @@ const Login = ({ onAuth }) => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/login', formData);
+      const res = await axios.post('/api/auth/login', formData);
       onAuth(res.data.user);
       navigate(res.data.user.role === 'student' ? '/student/dashboard' : '/teacher/dashboard');
     } catch (err) {

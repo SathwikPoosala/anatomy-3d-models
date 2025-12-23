@@ -9,17 +9,19 @@ router.get('/', authMiddleware, studentMiddleware, async (req, res) => {
   try {
     const user = await User.findById(req.userId).populate('quizScores.quizId');
     
-    const marks = user.quizScores.map(score => {
-      const quiz = score.quizId;
-      return {
-        quizId: quiz._id,
-        quizName: quiz.system || 'Quiz',
-        score: score.score,
-        totalQuestions: score.totalQuestions,
-        percentage: Math.round((score.score / score.totalQuestions) * 100),
-        date: score.date
-      };
-    });
+    const marks = user.quizScores
+      .filter(score => score.quizId) // Filter out null references
+      .map(score => {
+        const quiz = score.quizId;
+        return {
+          quizId: quiz._id,
+          quizName: quiz.system || 'Quiz',
+          score: score.score,
+          totalQuestions: score.totalQuestions,
+          percentage: Math.round((score.score / score.totalQuestions) * 100),
+          date: score.date
+        };
+      });
 
     res.json(marks);
   } catch (error) {

@@ -34,8 +34,8 @@ const QuizzesList = ({ user, onLogout }) => {
   const fetchData = async () => {
     try {
       const [quizzesRes, marksRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/quizzes'),
-        axios.get('http://localhost:5000/api/marks')
+        axios.get('/api/quizzes'),
+        axios.get('/api/marks')
       ]);
       setQuizzes(quizzesRes.data);
       setMarks(marksRes.data);

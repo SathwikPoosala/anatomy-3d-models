@@ -34,7 +34,7 @@ const ModelsList = ({ user, onLogout }) => {
 
   const fetchModels = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/models');
+      const res = await axios.get('/api/models');
       setModels(res.data);
     } catch (error) {
       console.error('Error fetching models:', error);

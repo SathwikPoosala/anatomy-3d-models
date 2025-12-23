@@ -36,7 +36,7 @@ const Register = ({ onAuth }) => {
     setError('');
 
     try {
-      const res = await axios.post('http://localhost:5000/api/auth/register', formData);
+      const res = await axios.post('/api/auth/register', formData);
       onAuth(res.data.user);
       navigate(res.data.user.role === 'student' ? '/student/dashboard' : '/teacher/dashboard');
     } catch (err) {

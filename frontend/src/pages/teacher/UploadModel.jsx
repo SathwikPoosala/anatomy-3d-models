@@ -62,7 +62,7 @@ const UploadModel = ({ user, onLogout }) => {
     }
 
     try {
-      await axios.post('http://localhost:5000/api/models', formData);
+      await axios.post('/api/models', formData);
       navigate('/teacher/models');
     } catch (err) {
       setError(err.response?.data?.message || 'Error uploading model');

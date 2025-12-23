@@ -40,9 +40,9 @@ const StudentDashboard = ({ user, onLogout }) => {
   const fetchStats = async () => {
     try {
       const [modelsRes, quizzesRes, marksRes] = await Promise.all([
-        axios.get('http://localhost:5000/api/models'),
-        axios.get('http://localhost:5000/api/quizzes'),
-        axios.get('http://localhost:5000/api/marks')
+        axios.get('/api/models'),
+        axios.get('/api/quizzes'),
+        axios.get('/api/marks')
       ]);
 
       setStats({

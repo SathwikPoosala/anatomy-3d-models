@@ -31,7 +31,7 @@ const Marks = ({ user, onLogout }) => {
 
   const fetchMarks = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/marks');
+      const res = await axios.get('/api/marks');
       setMarks(res.data);
     } catch (error) {
       console.error('Error fetching marks:', error);

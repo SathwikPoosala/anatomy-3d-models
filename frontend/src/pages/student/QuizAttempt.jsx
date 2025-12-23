@@ -36,7 +36,7 @@ const QuizAttempt = ({ user, onLogout }) => {
 
   const fetchQuiz = async () => {
     try {
-      const res = await axios.get(`http://localhost:5000/api/quizzes/${id}`);
+      const res = await axios.get(`/api/quizzes/${id}`);
       setQuiz(res.data);
       // Initialize answers object
       const initialAnswers = {};
@@ -70,7 +70,7 @@ const QuizAttempt = ({ user, onLogout }) => {
     const answersArray = Object.keys(answers).map(key => answers[key]);
     
     try {
-      const res = await axios.post(`http://localhost:5000/api/quizzes/${id}/submit`, {
+      const res = await axios.post(`/api/quizzes/${id}/submit`, {
         answers: answersArray
       });
       setScore(res.data);

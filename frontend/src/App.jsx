@@ -35,7 +35,7 @@ function App() {
 
   const checkAuth = async () => {
     try {
-      const res = await axios.get('http://localhost:5000/api/auth/me');
+      const res = await axios.get('/api/auth/me');
       setUser(res.data.user);
       // Apply dark mode if student and preference is set
       if (res.data.user?.role === 'student') {
@@ -54,7 +54,7 @@ function App() {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:5000/api/auth/logout');
+      await axios.post('/api/auth/logout');
       setUser(null);
     } catch (error) {
       console.error('Logout error:', error);
